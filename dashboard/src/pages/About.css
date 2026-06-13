@@ -1,0 +1,120 @@
+.about-page {
+  padding-top: calc(var(--navbar-h) + var(--sp-12));
+  padding-bottom: var(--sp-16);
+}
+
+.about-header {
+  margin-bottom: var(--sp-16);
+  max-width: 800px;
+}
+
+.about-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--text-primary);
+  margin-bottom: var(--sp-6);
+  line-height: 1.1;
+}
+
+.about-intro {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Timeline */
+.about-timeline {
+  max-width: 800px;
+  position: relative;
+}
+
+.about-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 24px;
+  width: 2px;
+  background-color: var(--border-subtle);
+  z-index: 0;
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  gap: var(--sp-8);
+  margin-bottom: var(--sp-10);
+  z-index: 1;
+}
+
+.timeline-marker {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--bg-card);
+  border: 2px solid var(--accent-olive);
+  color: var(--accent-olive);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.timeline-content {
+  background-color: var(--bg-card);
+  padding: var(--sp-6) var(--sp-8);
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+  flex-grow: 1;
+}
+
+.timeline-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-3);
+}
+
+.timeline-content p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: var(--text-base);
+}
+
+.model-list {
+  margin-top: var(--sp-4);
+  padding-left: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.model-list li {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.model-list strong {
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .about-timeline::before {
+    left: 20px;
+  }
+  .timeline-item {
+    gap: var(--sp-4);
+  }
+  .timeline-marker {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  .timeline-content {
+    padding: var(--sp-5);
+  }
+}

@@ -1,0 +1,119 @@
+/*
+  components/Hero.css — Video background version
+*/
+
+/* ── Banner ──────────────────────────────────────────────── */
+.hero-banner {
+  position: relative;
+  padding-top: calc(var(--navbar-h) + var(--sp-24));
+  padding-bottom: var(--sp-24);
+  overflow: hidden;         /* clips the video to this section */
+  min-height: 85vh;         /* takes up most of the first screen */
+  display: flex;
+  align-items: flex-end;    /* title sits near the bottom of the banner */
+}
+
+/* ── Video — covers the full section like background-size: cover ── */
+.hero-banner__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;  /* crops to show the middle-lower field */
+
+  /*
+    CSS color grading:
+    - sepia(0.5)        pulls the whole frame toward warm golden tones
+    - saturate(0.75)    desaturates slightly so it doesn't fight the palette
+    - brightness(0.52)  darkens enough for white/cream text to pop
+    - hue-rotate(-8deg) nudges slightly toward olive/amber territory
+    - contrast(1.05)    slight contrast boost keeps field texture visible
+  */
+  filter: sepia(0.5) saturate(0.75) brightness(0.52) hue-rotate(-8deg) contrast(1.05);
+
+  z-index: 0;
+}
+
+/* ── Gradient overlay ────────────────────────────────────────
+   Two-layer gradient:
+   1. Bottom-up dark fade — ensures title text on bottom is readable
+   2. Very subtle warm cream tone at very bottom — blends into the
+      intro section below so it doesn't feel like a hard cut
+*/
+.hero-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(30, 25, 15, 0.15) 0%,      /* subtle top darkening */
+      rgba(30, 25, 15, 0.0)  35%,      /* transparent in the middle */
+      rgba(20, 17, 8, 0.55)  75%,      /* deepens toward bottom */
+      rgba(30, 22, 10, 0.82) 100%      /* strong at very bottom for text */
+    );
+  z-index: 1;
+}
+
+/* ── Text container ──────────────────────────────────────── */
+.hero-banner__inner {
+  position: relative;
+  z-index: 2;              /* sits above video and overlay */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-bottom: var(--sp-10);
+}
+
+.hero-banner__title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7.5vw, var(--text-6xl));
+  color: var(--cream);          /* cream text on dark video background */
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  max-width: 12ch;
+  /* Very subtle text shadow to guarantee legibility */
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* "Across India" — warmer rose tone (slightly lighter to glow on dark bg) */
+.hero-banner__em {
+  font-style: italic;
+  color: #E8B8A8;   /* rose blush lightened for dark background */
+  display: block;
+}
+
+/* ── Intro paragraph ─────────────────────────────────────── */
+.hero-intro {
+  padding: var(--sp-8) 0 var(--sp-10);
+  background: var(--bg-main);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.hero-intro__inner {
+  display: flex;
+  align-items: flex-start;
+}
+
+.hero-intro__text {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 72ch;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-banner {
+    min-height: 65vh;
+    padding-top: calc(var(--navbar-h) + var(--sp-16));
+    padding-bottom: var(--sp-16);
+    align-items: flex-end;
+  }
+  .hero-intro__text {
+    font-size: var(--text-base);
+  }
+}
