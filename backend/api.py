@@ -33,8 +33,12 @@ origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
+# FRONTEND_URL can hold a single URL or a comma-separated list so as to support both the production domain and Vercel preview URLs in one variable
 if os.getenv("FRONTEND_URL"):
-    origins.append(os.getenv("FRONTEND_URL"))
+    for url in os.getenv("FRONTEND_URL").split(","):
+        url = url.strip()
+        if url:
+            origins.append(url)
 
 app.add_middleware(
     CORSMiddleware,
@@ -43,6 +47,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+logger.info(f"CORS allowed origins: {origins}")  # logged at startup so as to verify the Vercel URL was picked up correctly from FRONTEND_URL
 
 @app.middleware("http")  # this is a decorator that wraps the function below in logic that runs before every single API request and after every single API response
 async def add_security_headers(request: Request, call_next):
