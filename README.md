@@ -107,10 +107,6 @@ The conversation is stateless on the server — full history is sent from the fr
 
 The system prompt restricts the chatbot to millet agronomy, district-level yield data (1993-2019), and the project's ML methodology. It explicitly rejects questions about non-millet crops, live weather forecasts, and market prices. If the tool returns no data for a query, the model is instructed to relay that clearly rather than guess.
 
-**Why not RAG:**
-
-The dataset is structured tabular data (CSV rows), not unstructured text. RAG excels at retrieving passages from documents, but for precise numerical lookups ("yield in district X, year Y"), a direct function call against the DataFrame is simpler, faster, and guaranteed to return the exact value. There is no embedding step, no similarity search, and no risk of retrieving the wrong chunk.
-
 ## Tech Stack
 
 - **ML:** XGBoost, SHAP, PyTorch (LSTM), Pandas, NumPy
