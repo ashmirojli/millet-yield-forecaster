@@ -86,7 +86,7 @@ For example, a typical SHAP output for a district might show that high `yield_la
 
 ## Chatbot
 
-The chatbot is a tool-augmented LLM agent, not a RAG system. The distinction matters: instead of retrieving chunks from a vector database and hoping the model interprets them correctly, the model is given a callable Python function and decides when to use it.
+The chatbot is a tool-augmented LLM agent.
 
 **Architecture:**
 
